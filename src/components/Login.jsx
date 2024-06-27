@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
 import './LoginRegister.css';
+import authService from '../services/authenticationService';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle login logic here
+        try {
+            await authService.login(username, password);
+            navigate('/dashboard'); // Redirect to dashboard after successful login
+        } catch (error) {
+            setError('Failed to login');
+            console.error(error);
+        }
     };
 
     return (
@@ -15,11 +25,11 @@ export default function Login() {
             <h2>Welcome back</h2>
             <form onSubmit={handleSubmit} className="form">
                 <div className="form-group">
-                    <label>Email</label>
+                    <label>Username</label>
                     <input 
-                        type="email" 
-                        value={email} 
-                        onChange={(e) => setEmail(e.target.value)} 
+                        type="username" 
+                        value={username} 
+                        onChange={(e) => setUsername(e.target.value)} 
                         required 
                     />
                 </div>

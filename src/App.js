@@ -9,6 +9,7 @@ import About from './components/About';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import Register from './components/Register';
+import ProtectedRoute from './components/ProtectedRoute';
 
 
 function App() {
@@ -21,10 +22,6 @@ function App() {
           element={<Home/>}
         />
         <Route
-          path="/dashboard"
-          element={<Dashboard/>}
-        />
-        <Route
           path="/about"
           element={<About/>}
         />
@@ -35,6 +32,10 @@ function App() {
         <Route
           path="/register"
           element={<Register/>}
+        />
+        <ProtectedRoute 
+          path="/dashboard"
+          component={Dashboard} 
         />
       </Routes>
       <Footer/>
