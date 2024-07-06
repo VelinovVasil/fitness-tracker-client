@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './LoginRegister.css';
 import authService from '../services/authenticationService';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +13,7 @@ export default function Login() {
         e.preventDefault();
         try {
             await authService.login(username, password);
-            navigate('/dashboard'); // Redirect to dashboard after successful login
+            navigate('/dashboard');
         } catch (error) {
             setError('Failed to login');
             console.error(error);

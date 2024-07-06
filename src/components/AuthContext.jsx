@@ -5,6 +5,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = authenticationService.getToken();
@@ -12,6 +13,7 @@ export const AuthProvider = ({ children }) => {
       const userDetails = authenticationService.parseToken(token);
       setUser(userDetails);
     }
+    setLoading(false);
   }, []);
 
   const login = async (username, password) => {
@@ -19,20 +21,31 @@ export const AuthProvider = ({ children }) => {
     const token = authenticationService.getToken();
     const userDetails = authenticationService.parseToken(token);
     setUser(userDetails);
+
+    console.log("User details:");
+    console.log(userDetails);
+
+    window.location.reload();
   };
 
   const logout = () => {
     authenticationService.logout();
     setUser(null);
+    window.location.reload();
   };
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
+      {!loading && children}
     </AuthContext.Provider>
   );
 };
 
 export const useAuth = () => {
-  return useContext(AuthContext);
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
 };
+
