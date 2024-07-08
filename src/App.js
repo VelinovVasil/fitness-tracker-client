@@ -13,6 +13,7 @@ import { AuthProvider } from './components/AuthContext';
 import Protected from './components/Protected';
 import AddRecipe from './components/AddRecipe';
 import AddWorkout from './components/AddWorkout';
+import RecipeDetails from './components/RecipeDetails';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/dashboard" element={<Protected element={<Dashboard/>} />} />
           <Route path="/add-recipe" element={<Protected element={<AddRecipe/>} />} />
           <Route path="/add-workout" element={<Protected element={<AddWorkout/>} />} />
+          <Route path="/recipe/:id" element={<Protected element={<RecipeDetails/>} />} />
         </Routes>
         <Footer />
       </Router>

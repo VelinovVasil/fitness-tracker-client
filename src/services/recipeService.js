@@ -33,3 +33,23 @@ export const fetchAllRecipesByUserId = async (userId, token) => {
         throw error; 
     }
 };
+
+export const fetchRecipeById = async (recipeId, token) => {
+    try {
+        const response = await fetch(API_URL + '/'+ recipeId, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        if (!response.ok) {
+            throw new Error('Failed to fetch recipe');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching recipe:', error);
+        throw error; 
+    }
+
+}

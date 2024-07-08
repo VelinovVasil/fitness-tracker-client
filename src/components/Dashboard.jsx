@@ -39,7 +39,7 @@ export default function Dashboard() {
                     {recipes.length > 0 && (
                         <ul className="recipe-list">
                             {recipes.map(recipe => (
-                                <li key={recipe.name} className="recipe-item">
+                                <li key={recipe.id} className="recipe-item">
                                     <Link to={`/recipe/${recipe.id}`} className="recipe-link">
                                         <h3>{recipe.name}</h3>
                                         <p>Type: {recipe.recipeType}</p>
