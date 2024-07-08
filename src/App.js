@@ -11,7 +11,7 @@ import Register from './components/Register';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './components/AuthContext';
 import Protected from './components/Protected';
-import AddMeal from './components/AddMeal';
+import AddRecipe from './components/AddRecipe';
 import AddWorkout from './components/AddWorkout';
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           {/* <ProtectedRoute path="/dashboard" element={<Dashboard />} /> */}
           <Route path="/dashboard" element={<Protected element={<Dashboard/>} />} />
-          <Route path="/add-meal" element={<Protected element={<AddMeal/>} />} />
+          <Route path="/add-recipe" element={<Protected element={<AddRecipe/>} />} />
           <Route path="/add-workout" element={<Protected element={<AddWorkout/>} />} />
         </Routes>
         <Footer />
