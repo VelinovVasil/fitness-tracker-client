@@ -45,7 +45,7 @@ export default function RecipeDetails() {
                 <p><strong>Instructions:</strong> {recipe.instructions}</p>
             </div>
             <div className="buttons">
-                <button onClick={() => navigate(`/edit-recipe/${recipe.id}`)} className="edit-button">Edit Recipe</button>
+                <button onClick={() => navigate(`/edit-recipe/${id}`)} className="edit-button">Edit Recipe</button>
                 <button onClick={handleDelete} className="delete-button">Delete Recipe</button>
             </div>
         </div>

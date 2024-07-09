@@ -14,6 +14,7 @@ import Protected from './components/Protected';
 import AddRecipe from './components/AddRecipe';
 import AddWorkout from './components/AddWorkout';
 import RecipeDetails from './components/RecipeDetails';
+import EditRecipe from "./components/EditRecipe";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/add-recipe" element={<Protected element={<AddRecipe/>} />} />
           <Route path="/add-workout" element={<Protected element={<AddWorkout/>} />} />
           <Route path="/recipe/:id" element={<Protected element={<RecipeDetails/>} />} />
+          <Route path="/edit-recipe/:id" element={<Protected element={<EditRecipe/>} />} />
         </Routes>
         <Footer />
       </Router>

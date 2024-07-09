@@ -75,3 +75,25 @@ export const deleteRecipeById = async (id, token) => {
         throw error;
     }
 }
+
+export const updateRecipeById = async (id, recipeData, token) => {
+    try {
+        const response = await fetch(`${API_URL}/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(recipeData)
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to update recipe');
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.log('Error updating recipe:', error);
+        throw error;
+    }
+};
