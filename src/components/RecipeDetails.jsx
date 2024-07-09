@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { fetchRecipeById  } from '../services/recipeService';
+import { fetchRecipeById, deleteRecipeById  } from '../services/recipeService';
 import authenticationService from '../services/authenticationService';
 
 export default function RecipeDetails() {
@@ -23,12 +23,12 @@ export default function RecipeDetails() {
     }, [id, token]);
 
     const handleDelete = async () => {
-        // try {
-        //     await deleteRecipeById(id, token);
-        //     navigate('/');
-        // } catch (error) {
-        //     console.error('Error deleting recipe:', error);
-        // }
+        try {
+            await deleteRecipeById(id, token);
+            navigate('/dashboard');
+        } catch (error) {
+            console.error('Error deleting recipe:', error);
+        }
     };
 
     if (!recipe) {
