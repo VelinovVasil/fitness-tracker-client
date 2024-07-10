@@ -10,7 +10,8 @@ export default function EditRecipe() {
         recipeType: '',
         calories: '',
         description: '',
-        instructions: ''
+        instructions: '',
+        userId: id
     });
     const token = authenticationService.getToken();
     const navigate = useNavigate();
@@ -76,7 +77,7 @@ export default function EditRecipe() {
                     Instructions:
                     <textarea name="instructions" value={recipe.instructions} onChange={handleChange}></textarea>
                 </label>
-                <button type="submit" className="save-button">Save Changes</button>
+                <button type="submit" className="save-button" onClick={(e) => handleSubmit(e)}>Save Changes</button>
             </form>
         </div>
     );
