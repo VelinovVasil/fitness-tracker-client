@@ -310,6 +310,72 @@ h1 {
   background-color: #218838;
 }
 
+/* CSS for the Add Workout form */
+.add-workout {
+  margin: 1em auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  max-width: 600px;
+}
+
+.add-workout h2 {
+  margin-bottom: 20px;
+}
+
+.add-workout label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.add-workout input,
+.add-workout textarea,
+.add-workout select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.add-workout button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-workout button:hover {
+  background-color: #218838;
+}
+
+.selected-exercise {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.selected-exercise h3 {
+  margin-top: 0;
+}
+
+.selected-exercise label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.selected-exercise input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
 
 
 
