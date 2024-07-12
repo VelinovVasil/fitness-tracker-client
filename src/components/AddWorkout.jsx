@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchExercises } from '../services/exerciseService';
+import { createWorkout } from '../services/workoutService';
+import { jwtDecode } from 'jwt-decode';
 import authenticationService from '../services/authenticationService';
 
 const AddWorkout = () => {
@@ -27,7 +29,11 @@ const AddWorkout = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Create the WorkoutExercise objects
+        
+        const token = authenticationService.getToken();
+        const decodedToken = jwtDecode(token);
+        const userId = decodedToken.userId;
+
         const workoutExercises = selectedExercises.map(ex => ({
             exerciseId: ex.id,
             sets: ex.sets,
@@ -35,14 +41,14 @@ const AddWorkout = () => {
         }));
 
         const workoutData = {
-            workoutName,
+            name: workoutName,
             description,
             duration,
+            userId,
             exercises: workoutExercises,
         };
 
-        // Submit the workoutData to the backend
-        console.log('Workout Data:', workoutData);
+        createWorkout(workoutData, token);
         navigate('/dashboard');
     };
 
