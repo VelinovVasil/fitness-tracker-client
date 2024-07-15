@@ -63,3 +63,28 @@ export const fetchWorkoutById = async (workoutId, token) => {
     }
 
 }
+
+export const deleteWorkoutById = async (id, token) => {
+
+    try {
+
+        const response = await fetch(API_URL + '/' + id,
+            {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            }
+        );
+
+        return response;
+
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+
+export const updateWorkout = async () => {
+
+}
