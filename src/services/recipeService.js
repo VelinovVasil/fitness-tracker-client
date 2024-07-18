@@ -1,5 +1,24 @@
 const API_URL = 'http://localhost:8080/recipe';
 
+export const fetchAllRecipes = async (token) => {
+    try {
+        const response = await fetch(API_URL + '/', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        if (!response.ok) {
+            throw new Error('Failed to fetch recipes');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching recipes:', error);
+        throw error; 
+    }
+}
+
 export const createRecipe = async (recipe, token) => {
 
     return fetch(API_URL + '/create', {

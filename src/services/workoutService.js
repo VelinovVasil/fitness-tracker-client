@@ -1,5 +1,24 @@
 const API_URL = 'http://localhost:8080/workout';
 
+export const fetchAllWorkouts = async (token) => {
+    try {
+        const response = await fetch(API_URL + '/', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        if (!response.ok) {
+            throw new Error('Failed to fetch workouts');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching workouts:', error);
+        throw error; 
+    }
+}
+
 
 export const createWorkout = async (workout, token) => {
 
@@ -10,7 +29,7 @@ export const createWorkout = async (workout, token) => {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer: ${token}`
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(workout)
             }
@@ -85,6 +104,20 @@ export const deleteWorkoutById = async (id, token) => {
     }
 }
 
-export const updateWorkout = async () => {
+export const updateWorkout = async (id, workoutData, token) => {
+    try {
+        const response = await fetch(`${API_URL}/${id}`, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(workoutData)
+        });
 
+        return response;
+    } catch (error) {
+        console.error('Error updating workout:', error);
+        throw error;
+    }
 }

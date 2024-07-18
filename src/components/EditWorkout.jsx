@@ -68,7 +68,7 @@ const EditWorkout = () => {
                 description,
                 duration,
                 userId,
-                exercises: workoutExercises,
+                workoutExercises,
             };
 
             await updateWorkout(id, workoutData, token);

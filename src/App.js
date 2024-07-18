@@ -17,6 +17,7 @@ import RecipeDetails from './components/RecipeDetails';
 import EditRecipe from "./components/EditRecipe";
 import WorkoutDetails from './components/WorkoutDetails';
 import EditWorkout from './components/EditWorkout';
+import AdminPanel from "./components/AdminPanel";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/edit-recipe/:id" element={<Protected element={<EditRecipe/>} />} />
           <Route path="/workout/:id" element={<Protected element={<WorkoutDetails/>} />} />
           <Route path="/edit-workout/:id" element={<Protected element={<EditWorkout/>} />} />
+          <Route path="/admin" element={<Protected element={<AdminPanel/>} />} />
         </Routes>
         <Footer />
       </Router>
