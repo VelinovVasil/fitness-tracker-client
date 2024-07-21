@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { fetchWorkoutById, updateWorkout } from '../services/workoutService';
 import { fetchExercises } from '../services/exerciseService';
-import {jwtDecode} from 'jwt-decode'; // Fixed import
+import { jwtDecode } from 'jwt-decode';
 import authenticationService from '../services/authenticationService';
 
 const EditWorkout = () => {
     const { id } = useParams();
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const [workoutName, setWorkoutName] = useState('');
     const [description, setDescription] = useState('');
@@ -111,10 +113,10 @@ const EditWorkout = () => {
 
     return (
         <div className="edit-workout">
-            <h2>Edit Workout</h2>
+            <h2>{t('edit_workout')}</h2>
             <form onSubmit={handleSubmit}>
                 <label>
-                    Workout Name:
+                    {t('workout_name')}:
                     <input
                         type="text"
                         value={workoutName}
@@ -123,7 +125,7 @@ const EditWorkout = () => {
                     />
                 </label>
                 <label>
-                    Description:
+                    {t('description')}:
                     <textarea
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
@@ -131,7 +133,7 @@ const EditWorkout = () => {
                     />
                 </label>
                 <label>
-                    Duration (minutes):
+                    {t('duration_minutes')}:
                     <input
                         type="number"
                         value={duration}
@@ -140,7 +142,7 @@ const EditWorkout = () => {
                     />
                 </label>
                 <label>
-                    Exercises:
+                    {t('exercises')}:
                     <select multiple onChange={handleExerciseChange}>
                         {exercises.map((exercise) => (
                             <option
@@ -159,11 +161,11 @@ const EditWorkout = () => {
 
                 {selectedExercises.map(ex => (
                     <div key={ex.id} className="selected-exercise">
-                        <h3>{ex.name}</h3>
-                        <p>{ex.description}</p>
-                        <p>Muscle Group: {ex.muscleGroup}</p>
+                        <h3>{t('exercise_name')}: {ex.name}</h3>
+                        <p>{t('description')}: {ex.description}</p>
+                        <p>{t('muscle_group')}: {ex.muscleGroup}</p>
                         <label>
-                            Sets:
+                            {t('sets')}:
                             <input
                                 type="number"
                                 value={ex.sets}
@@ -172,7 +174,7 @@ const EditWorkout = () => {
                             />
                         </label>
                         <label>
-                            Reps:
+                            {t('reps')}:
                             <input
                                 type="number"
                                 value={ex.reps}
@@ -183,7 +185,7 @@ const EditWorkout = () => {
                     </div>
                 ))}
 
-                <button type="submit">Update Workout</button>
+                <button type="submit">{t('update_workout')}</button>
             </form>
         </div>
     );

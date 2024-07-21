@@ -1,11 +1,13 @@
 import React from 'react';
+import { useTranslation } from "react-i18next";
 
 export default function About() {
+    const { t } = useTranslation();
+
     return (
         <div className="about">
-            <h1>About Fitness Tracker</h1>
-            <p>Fitness Tracker is designed to help you achieve your fitness goals by tracking your workouts and meals.</p>
-            <p>Stay on top of your fitness game with our easy-to-use tracking features and motivational tools.</p>
+            <h1>{t('about')}</h1>
+            <p>{t('about_description')}</p>
         </div>
     );
 }

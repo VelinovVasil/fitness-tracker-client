@@ -4,8 +4,10 @@ import { fetchExercises } from '../services/exerciseService';
 import { createWorkout } from '../services/workoutService';
 import { jwtDecode } from 'jwt-decode';
 import authenticationService from '../services/authenticationService';
+import { useTranslation } from 'react-i18next';
 
 const AddWorkout = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const [workoutName, setWorkoutName] = useState('');
     const [description, setDescription] = useState('');
@@ -22,7 +24,7 @@ const AddWorkout = () => {
             } catch (error) {
                 console.error('Error fetching exercises:', error);
             }
-        }
+        };
 
         fetchData();
     }, [token]);
@@ -80,10 +82,10 @@ const AddWorkout = () => {
 
     return (
         <div className="add-workout">
-            <h2>Add Workout</h2>
+            <h2>{t('add_workout')}</h2>
             <form onSubmit={handleSubmit}>
                 <label>
-                    Workout Name:
+                    {t('workout_name')}:
                     <input
                         type="text"
                         value={workoutName}
@@ -92,7 +94,7 @@ const AddWorkout = () => {
                     />
                 </label>
                 <label>
-                    Description:
+                    {t('description')}:
                     <textarea
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
@@ -100,7 +102,7 @@ const AddWorkout = () => {
                     />
                 </label>
                 <label>
-                    Duration (minutes):
+                    {t('duration_minutes')}:
                     <input
                         type="number"
                         value={duration}
@@ -109,7 +111,7 @@ const AddWorkout = () => {
                     />
                 </label>
                 <label>
-                    Exercises:
+                    {t('exercises')}:
                     <select multiple onChange={handleExerciseChange}>
                         {exercises.map((exercise) => (
                             <option
@@ -129,9 +131,9 @@ const AddWorkout = () => {
                     <div key={ex.id} className="selected-exercise">
                         <h3>{ex.name}</h3>
                         <p>{ex.description}</p>
-                        <p>Muscle Group: {ex.muscleGroup}</p>
+                        <p>{t('muscle_group')}: {ex.muscleGroup}</p>
                         <label>
-                            Sets:
+                            {t('sets')}:
                             <input
                                 type="number"
                                 value={ex.sets}
@@ -140,7 +142,7 @@ const AddWorkout = () => {
                             />
                         </label>
                         <label>
-                            Reps:
+                            {t('reps')}:
                             <input
                                 type="number"
                                 value={ex.reps}
@@ -151,7 +153,7 @@ const AddWorkout = () => {
                     </div>
                 ))}
 
-                <button type="submit">Add Workout</button>
+                <button type="submit">{t('add_workout')}</button>
             </form>
         </div>
     );

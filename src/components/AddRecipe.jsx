@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import authenticationService from '../services/authenticationService';
-import {createRecipe} from '../services/recipeService';
+import { createRecipe } from '../services/recipeService';
+import { useTranslation } from 'react-i18next';
 
 const AddRecipe = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const [recipeName, setRecipeName] = useState('');
     const [recipeType, setRecipeType] = useState('SALAD');
@@ -16,8 +18,6 @@ const AddRecipe = () => {
         e.preventDefault();
 
         const token = authenticationService.getToken();
-
-
         const decodedToken = jwtDecode(token);
         const userId = decodedToken.userId;
 
@@ -28,19 +28,18 @@ const AddRecipe = () => {
             instructions: instructions,
             calories: calories,
             userId: userId
-        }
+        };
 
         createRecipe(toAdd, token);
-
         navigate('/dashboard');
     };
 
     return (
         <div className="add-recipe">
-            <h2>Add Recipe</h2>
+            <h2>{t('add_recipe')}</h2>
             <form onSubmit={handleSubmit} className="recipe-form">
                 <label>
-                    Recipe Name:
+                    {t('recipe_name')}:
                     <input
                         type="text"
                         value={recipeName}
@@ -49,20 +48,20 @@ const AddRecipe = () => {
                     />
                 </label>
                 <label>
-                    Type:
+                    {t('type')}:
                     <select
                         value={recipeType}
                         onChange={(e) => setRecipeType(e.target.value)}
                         required
                     >
-                        <option value="SALAD">Salad</option>
-                        <option value="MAIN">Main</option>
-                        <option value="DESSERT">Dessert</option>
-                        <option value="SNACK">Snack</option>
+                        <option value="SALAD">{t('salad')}</option>
+                        <option value="MAIN">{t('main')}</option>
+                        <option value="DESSERT">{t('dessert')}</option>
+                        <option value="SNACK">{t('snack')}</option>
                     </select>
                 </label>
                 <label>
-                    Description:
+                    {t('description')}:
                     <textarea
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
@@ -70,7 +69,7 @@ const AddRecipe = () => {
                     />
                 </label>
                 <label>
-                    Instructions:
+                    {t('instructions')}:
                     <textarea
                         value={instructions}
                         onChange={(e) => setInstructions(e.target.value)}
@@ -78,7 +77,7 @@ const AddRecipe = () => {
                     />
                 </label>
                 <label>
-                    Calories:
+                    {t('calories')}:
                     <input
                         type="number"
                         value={calories}
@@ -86,7 +85,7 @@ const AddRecipe = () => {
                         required
                     />
                 </label>
-                <button type="submit">Add Recipe</button>
+                <button type="submit">{t('add_recipe')}</button>
             </form>
         </div>
     );

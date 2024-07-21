@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { fetchRecipeById, deleteRecipeById  } from '../services/recipeService';
+import { useTranslation } from 'react-i18next';
+import { fetchRecipeById, deleteRecipeById } from '../services/recipeService';
 import authenticationService from '../services/authenticationService';
 
 export default function RecipeDetails() {
     const { id } = useParams();
+    const { t } = useTranslation();
     const [recipe, setRecipe] = useState(null);
     const token = authenticationService.getToken();
     const navigate = useNavigate();
@@ -32,21 +34,21 @@ export default function RecipeDetails() {
     };
 
     if (!recipe) {
-        return <p>Loading...</p>;
+        return <p>{t('loading')}</p>;
     }
 
     return (
         <div className="recipe-detail">
             <h1>{recipe.name}</h1>
             <div className="recipe-info">
-                <p><strong>Type:</strong> {recipe.recipeType}</p>
-                <p><strong>Calories:</strong> {recipe.calories}</p>
-                <p><strong>Description:</strong> {recipe.description}</p>
-                <p><strong>Instructions:</strong> {recipe.instructions}</p>
+                <p><strong>{t('type')}:</strong> {t(recipe.recipeType.toLowerCase())}</p>
+                <p><strong>{t('calories')}:</strong> {recipe.calories}</p>
+                <p><strong>{t('description')}:</strong> {recipe.description}</p>
+                <p><strong>{t('instructions')}:</strong> {recipe.instructions}</p>
             </div>
             <div className="buttons">
-                <button onClick={() => navigate(`/edit-recipe/${id}`)} className="edit-button">Edit Recipe</button>
-                <button onClick={handleDelete} className="delete-button">Delete Recipe</button>
+                <button onClick={() => navigate(`/edit-recipe/${id}`)} className="edit-button">{t('edit_recipe')}</button>
+                <button onClick={handleDelete} className="delete-button">{t('delete_recipe')}</button>
             </div>
         </div>
     );

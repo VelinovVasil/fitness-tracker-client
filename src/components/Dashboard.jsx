@@ -4,8 +4,10 @@ import { fetchAllRecipesByUserId } from '../services/recipeService';
 import { fetchAllWorkoutsByUserId } from '../services/workoutService';
 import { jwtDecode } from 'jwt-decode';
 import authenticationService from '../services/authenticationService';
+import { useTranslation } from "react-i18next";
 
 export default function Dashboard() {
+    const { t } = useTranslation();
     const [recipes, setRecipes] = useState([]);
     const [workouts, setWorkouts] = useState([]);
     const token = authenticationService.getToken();
@@ -29,44 +31,44 @@ export default function Dashboard() {
 
     return (
         <div className="dashboard">
-            <h1>Dashboard</h1>
-            <p>Here you can see a summary of your workouts and recipes.</p>
+            <h1>{t('dashboard')}</h1>
+            <p>{t('dashboard_summary')}</p>
             <div className="summary">
                 <div className="workouts">
-                    <h2>Workouts</h2>
-                    {workouts.length === 0 && <p>No workouts logged yet.</p>}
+                    <h2>{t('workouts')}</h2>
+                    {workouts.length === 0 && <p>{t('no_workouts')}</p>}
                     {workouts.length > 0 && (
                         <ul className="recipe-list">
                             {workouts.map(workout => (
                                 <li key={workout.id} className="recipe-item">
                                     <Link to={`/workout/${workout.id}`} className="recipe-link">
                                         <h3>{workout.name}</h3>
-                                        <p>Description: {workout.description}</p>
-                                        <p>Duration: <strong>{workout.duration}</strong> min</p>
+                                        <p>{t('workout_description')}: {workout.description}</p>
+                                        <p>{t('workout_duration')}: <strong>{workout.duration}</strong> min</p>
                                     </Link>
                                 </li>
                             ))}
                         </ul>
                     )}
-                    <Link to="/add-workout" className="plus-button">+ Add Workout</Link>
+                    <Link to="/add-workout" className="plus-button">{t('add_workout')}</Link>
                 </div>
                 <div className="recipes">
-                    <h2>Recipes</h2>
-                    {recipes.length === 0 && <p>No recipes logged yet.</p>}
+                    <h2>{t('recipes')}</h2>
+                    {recipes.length === 0 && <p>{t('no_recipes')}</p>}
                     {recipes.length > 0 && (
                         <ul className="recipe-list">
                             {recipes.map(recipe => (
                                 <li key={recipe.id} className="recipe-item">
                                     <Link to={`/recipe/${recipe.id}`} className="recipe-link">
                                         <h3>{recipe.name}</h3>
-                                        <p>Type: {recipe.recipeType}</p>
-                                        <p>Calories: {recipe.calories}</p>
+                                        <p>{t('recipe_type')}: {recipe.recipeType}</p>
+                                        <p>{t('calories')}: {recipe.calories}</p>
                                     </Link>
                                 </li>
                             ))}
                         </ul>
                     )}
-                    <Link to="/add-recipe" className="plus-button">+ Add Recipe</Link>
+                    <Link to="/add-recipe" className="plus-button">{t('add_recipe')}</Link>
                 </div>
             </div>
         </div>

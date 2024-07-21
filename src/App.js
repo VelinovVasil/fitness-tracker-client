@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './App.css';
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Header from './components/Header';
@@ -18,8 +18,16 @@ import EditRecipe from "./components/EditRecipe";
 import WorkoutDetails from './components/WorkoutDetails';
 import EditWorkout from './components/EditWorkout';
 import AdminPanel from "./components/AdminPanel";
+import './i18n';
+import { useTranslation } from "react-i18next";
 
 function App() {
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    i18n.changeLanguage(navigator.language);
+  }, [i18n]);
+
   return (
     <AuthProvider>
       <Router>
