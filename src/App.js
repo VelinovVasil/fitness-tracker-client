@@ -19,6 +19,7 @@ import EditWorkout from './components/EditWorkout';
 import AdminPanel from "./components/AdminPanel";
 import './i18n';
 import { useTranslation } from "react-i18next";
+import AddExercise from "./components/AddExercise";
 
 function App() {
   const { i18n } = useTranslation();
@@ -45,6 +46,7 @@ function App() {
           <Route path="/workout/:id" element={<Protected element={<WorkoutDetails/>} />} />
           <Route path="/edit-workout/:id" element={<Protected element={<EditWorkout/>} />} />
           <Route path="/admin" element={<Protected element={<AdminPanel/>} requiredRole="ADMIN" />} />
+          <Route path="/add-exercise" element={<Protected element={<AddExercise/>} requiredRole="ADMIN" />} />
         </Routes>
         <Footer />
       </Router>

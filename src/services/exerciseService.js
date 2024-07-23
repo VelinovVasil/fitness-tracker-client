@@ -1,5 +1,23 @@
 
 
+export const addExercise = async (dto, token) => {
+
+    try {
+        const response = await fetch('http://localhost:8080/exercise/', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(dto)
+        });
+        return response;
+    } catch (error) {
+        console.error('Error creating an exercise:', error);
+    }
+
+}
+
 export const fetchExercises = async (token) => {
 
             try {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { fetchAllRecipes } from '../services/recipeService';
-import { fetchAllWorkouts } from '../services/workoutService';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { fetchAllRecipes, deleteRecipeById } from '../services/recipeService'; // Import deleteRecipe
+import { fetchAllWorkouts, deleteWorkoutById } from '../services/workoutService'; // Import deleteWorkout
 import { fetchAllUsers } from '../services/userService';
 import authenticationService from '../services/authenticationService';
 
@@ -16,6 +17,7 @@ export default function AdminPanel() {
         users: true
     });
     const token = authenticationService.getToken();
+    const navigate = useNavigate(); // Initialize useNavigate
 
     useEffect(() => {
         const fetchData = async () => {
@@ -47,6 +49,28 @@ export default function AdminPanel() {
         }));
     };
 
+    const handleAddExerciseClick = () => {
+        navigate('/add-exercise'); // Redirect to /add-exercise
+    };
+
+    const handleDeleteWorkout = async (id) => {
+        try {
+            await deleteWorkoutById(id, token); // Call the delete function
+            setWorkouts(prevWorkouts => prevWorkouts.filter(workout => workout.id !== id)); // Update state
+        } catch (error) {
+            console.error('Error deleting workout:', error);
+        }
+    };
+
+    const handleDeleteRecipe = async (id) => {
+        try {
+            await deleteRecipeById(id, token); // Call the delete function
+            setRecipes(prevRecipes => prevRecipes.filter(recipe => recipe.id !== id)); // Update state
+        } catch (error) {
+            console.error('Error deleting recipe:', error);
+        }
+    };
+
     if (loading) {
         return <p className="loading">Loading...</p>;
     }
@@ -59,6 +83,10 @@ export default function AdminPanel() {
         <div className="admin-panel">
             <h1>Admin Panel</h1>
 
+            <button className="add-exercise-button" onClick={handleAddExerciseClick}>
+                Add Exercise
+            </button>
+
             <section className="collapsible-section">
                 <button className="collapsible-button" onClick={() => toggleSection('recipes')}>
                     Recipes {collapsed.recipes ? '+' : '-'}
@@ -69,12 +97,18 @@ export default function AdminPanel() {
                         {recipes.length > 0 ? (
                             <ul>
                                 {recipes.map(recipe => (
-                                    <li key={recipe.id}>
+                                    <li key={recipe.id} className="item">
                                         <div className="detail">
                                             <p><span>Name:</span> {recipe.name}</p>
                                             <p><span>Type:</span> {recipe.recipeType}</p>
                                             <p><span>Calories:</span> {recipe.calories}</p>
                                         </div>
+                                        <button 
+                                            className="delete-button" 
+                                            onClick={() => handleDeleteRecipe(recipe.id)}
+                                        >
+                                            Delete
+                                        </button>
                                     </li>
                                 ))}
                             </ul>
@@ -95,12 +129,18 @@ export default function AdminPanel() {
                         {workouts.length > 0 ? (
                             <ul>
                                 {workouts.map(workout => (
-                                    <li key={workout.id}>
+                                    <li key={workout.id} className="item">
                                         <div className="detail">
                                             <p><span>Name:</span> {workout.name}</p>
                                             <p><span>Description:</span> {workout.description}</p>
                                             <p><span>Duration:</span> {workout.duration} minutes</p>
                                         </div>
+                                        <button 
+                                            className="delete-button" 
+                                            onClick={() => handleDeleteWorkout(workout.id)}
+                                        >
+                                            Delete
+                                        </button>
                                     </li>
                                 ))}
                             </ul>
@@ -121,7 +161,7 @@ export default function AdminPanel() {
                         {users.length > 0 ? (
                             <ul>
                                 {users.map(user => (
-                                    <li key={user.id}>
+                                    <li key={user.id} className="item">
                                         <div className="detail">
                                             <p><span>Username:</span> {user.username}</p>
                                             <p><span>Email:</span> {user.email}</p>
