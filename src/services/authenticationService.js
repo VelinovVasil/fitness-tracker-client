@@ -1,5 +1,22 @@
 const API_URL = 'http://localhost:8080/auth';
 
+const register = async (dto) => {
+  const response = await fetch(`${API_URL}/register`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(dto),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to register');
+  }
+
+  const data = await response.json();
+  localStorage.setItem('token', data.token);
+}
+
 const login = async (username, password) => {
   const response = await fetch(`${API_URL}/authenticate`, {
     method: 'POST',
@@ -35,6 +52,7 @@ const authService = {
   logout,
   getToken,
   parseToken,
+  register
 };
 
 export default authService;
