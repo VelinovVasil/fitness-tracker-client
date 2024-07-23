@@ -44,7 +44,11 @@ const getToken = () => {
 
 const parseToken = (token) => {
   const payload = JSON.parse(atob(token.split('.')[1]));
-  return payload;
+  return {
+    username: payload.sub,
+    roles: payload.roles || [],
+    userId: payload.userId,
+  };
 };
 
 const authService = {

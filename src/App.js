@@ -8,9 +8,8 @@ import About from './components/About';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import Register from './components/Register';
-import ProtectedRoute from './components/ProtectedRoute';
-import { AuthProvider } from './components/AuthContext';
 import Protected from './components/Protected';
+import { AuthProvider } from './components/AuthContext';
 import AddRecipe from './components/AddRecipe';
 import AddWorkout from './components/AddWorkout';
 import RecipeDetails from './components/RecipeDetails';
@@ -45,7 +44,7 @@ function App() {
           <Route path="/edit-recipe/:id" element={<Protected element={<EditRecipe/>} />} />
           <Route path="/workout/:id" element={<Protected element={<WorkoutDetails/>} />} />
           <Route path="/edit-workout/:id" element={<Protected element={<EditWorkout/>} />} />
-          <Route path="/admin" element={<Protected element={<AdminPanel/>} />} />
+          <Route path="/admin" element={<Protected element={<AdminPanel/>} requiredRole="ADMIN" />} />
         </Routes>
         <Footer />
       </Router>
