@@ -745,6 +745,21 @@ button:hover {
   background-color: #c82333;
 }
 
+.weather-info {
+  display: flex;
+  align-items: center;
+}
+
+.weather-info img {
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+}
+
+.weather-info span {
+  font-size: 14px;
+}
+
 
 
 
