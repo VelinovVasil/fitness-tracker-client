@@ -23,14 +23,11 @@ const EditWorkout = () => {
                 const workoutData = await fetchWorkoutById(id, token);
                 if (!workoutData) throw new Error('Workout not found');
                 
-                console.log('Workout Data:', workoutData);
                 setWorkoutName(workoutData.name || '');
                 setDescription(workoutData.description || '');
                 setDuration(workoutData.duration || '');
 
                 const exercisesData = await fetchExercises(token);
-                console.log('Exercises Data:', exercisesData);
-                
                 if (!exercisesData) throw new Error('Exercises not found');
 
                 const selected = workoutData.workoutExercises ? workoutData.workoutExercises.map(we => ({
@@ -38,8 +35,6 @@ const EditWorkout = () => {
                     sets: we.sets,
                     reps: we.reps,
                 })) : [];
-
-                console.log('Selected Exercises:', selected);
 
                 setExercises(exercisesData);
                 setSelectedExercises(selected);
@@ -139,6 +134,8 @@ const EditWorkout = () => {
                         value={duration}
                         onChange={(e) => setDuration(e.target.value)}
                         required
+                        min="1"
+                        step="1"
                     />
                 </label>
                 <label>
@@ -171,6 +168,8 @@ const EditWorkout = () => {
                                 value={ex.sets}
                                 onChange={(e) => handleDetailChange(ex.id, 'sets', e.target.value)}
                                 required
+                                min="1"
+                                step="1"
                             />
                         </label>
                         <label>
@@ -180,6 +179,8 @@ const EditWorkout = () => {
                                 value={ex.reps}
                                 onChange={(e) => handleDetailChange(ex.id, 'reps', e.target.value)}
                                 required
+                                min="1"
+                                step="1"
                             />
                         </label>
                     </div>

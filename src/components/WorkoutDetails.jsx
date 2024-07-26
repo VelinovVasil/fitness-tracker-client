@@ -26,6 +26,7 @@ export default function WorkoutDetails() {
                     );
                     const exercisesDetails = await Promise.all(exerciseDetailsPromises);
                     setExercises(exercisesDetails);
+                    console.log(`Exercise Id: ${id}`);
                 }
             } catch (error) {
                 console.error('Error fetching workout or exercises:', error);
@@ -37,10 +38,10 @@ export default function WorkoutDetails() {
         fetchData();
     }, [id, token]);
 
-    const handleDelete = async () => {
+    const handleDelete = () => {
         try {
-            await deleteWorkoutById(id, token);
-            navigate('/dashboard');
+            deleteWorkoutById(id, token).then(() => navigate('/dashboard'));
+            // navigate('/dashboard');
         } catch (error) {
             console.error('Error deleting workout:', error);
         }

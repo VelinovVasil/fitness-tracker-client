@@ -108,6 +108,8 @@ const AddWorkout = () => {
                         value={duration}
                         onChange={(e) => setDuration(e.target.value)}
                         required
+                        min="1"
+                        step="1"
                     />
                 </label>
                 <label>
@@ -139,6 +141,8 @@ const AddWorkout = () => {
                                 value={ex.sets}
                                 onChange={(e) => handleDetailChange(ex.id, 'sets', e.target.value)}
                                 required
+                                min="1"
+                                step="1"
                             />
                         </label>
                         <label>
@@ -148,6 +152,8 @@ const AddWorkout = () => {
                                 value={ex.reps}
                                 onChange={(e) => handleDetailChange(ex.id, 'reps', e.target.value)}
                                 required
+                                min="1"
+                                step="1"
                             />
                         </label>
                     </div>

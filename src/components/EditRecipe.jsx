@@ -69,7 +69,7 @@ export default function EditRecipe() {
                 </label>
                 <label>
                     {t('calories')}:
-                    <input type="number" name="calories" value={recipe.calories} onChange={handleChange} />
+                    <input type="number" name="calories" value={recipe.calories} onChange={handleChange} min="1" step="1"/>
                 </label>
                 <label>
                     {t('description')}:

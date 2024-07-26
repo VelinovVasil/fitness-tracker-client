@@ -83,6 +83,8 @@ const AddRecipe = () => {
                         value={calories}
                         onChange={(e) => setCalories(e.target.value)}
                         required
+                        min="1"
+                        step="1"
                     />
                 </label>
                 <button type="submit">{t('add_recipe')}</button>

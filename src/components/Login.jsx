@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './LoginRegister.css';
 import authService from '../services/authenticationService';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';

@@ -106,6 +106,7 @@ export const deleteWorkoutById = async (id, token) => {
 
 export const updateWorkout = async (id, workoutData, token) => {
     try {
+        console.log(workoutData);
         const response = await fetch(`${API_URL}/${id}`, {
             method: "PUT",
             headers: {

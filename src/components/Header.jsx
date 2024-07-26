@@ -47,6 +47,7 @@ export default function Header() {
                     {!user && <li><Link to="/register">{t('register')}</Link></li>}
                     {user && <li><Link to="/dashboard">{t('dashboard')}</Link></li>}
                     {user && <li><a href="/" onClick={handleLogout} className="logout-button">{t('logout')}</a></li>}
+                    {user && user.roles.includes("ADMIN") && <li><Link to="/admin">{t('admin_link')}</Link></li>}
                 </ul>
             </nav>
             {loading && <p>Loading weather...</p>}
