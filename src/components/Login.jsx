@@ -15,7 +15,8 @@ export default function Login() {
         e.preventDefault();
         try {
             await authService.login(username, password);
-            navigate('/dashboard');
+            navigate('/');
+            window.location.reload();
         } catch (error) {
             setError(t('login_failed'));
             console.error(error);

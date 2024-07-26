@@ -13,7 +13,8 @@ export default function Header() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const handleLogout = () => {
+    const handleLogout = (e) => {
+        e.preventDefault();
         logout();
     };
 
@@ -45,7 +46,7 @@ export default function Header() {
                     {!user && <li><Link to="/login">{t('login')}</Link></li>}
                     {!user && <li><Link to="/register">{t('register')}</Link></li>}
                     {user && <li><Link to="/dashboard">{t('dashboard')}</Link></li>}
-                    {user && <li><button onClick={handleLogout} className="logout-button">{t('logout')}</button></li>}
+                    {user && <li><a href="/" onClick={handleLogout} className="logout-button">{t('logout')}</a></li>}
                 </ul>
             </nav>
             {loading && <p>Loading weather...</p>}

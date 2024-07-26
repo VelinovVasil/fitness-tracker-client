@@ -20,6 +20,8 @@ import AdminPanel from "./components/AdminPanel";
 import './i18n';
 import { useTranslation } from "react-i18next";
 import AddExercise from "./components/AddExercise";
+import AddLocationPage from "./components/AddLocationPage";
+import LocationDetails from './components/LocationDetails';
 
 function App() {
   const { i18n } = useTranslation();
@@ -45,6 +47,8 @@ function App() {
           <Route path="/edit-recipe/:id" element={<Protected element={<EditRecipe/>} />} />
           <Route path="/workout/:id" element={<Protected element={<WorkoutDetails/>} />} />
           <Route path="/edit-workout/:id" element={<Protected element={<EditWorkout/>} />} />
+          <Route path="/location/:id" element={<Protected element={<LocationDetails/>} />} />
+          <Route path="/add-location" element={<Protected element={<AddLocationPage/>} />} />
           <Route path="/admin" element={<Protected element={<AdminPanel/>} requiredRole="ADMIN" />} />
           <Route path="/add-exercise" element={<Protected element={<AddExercise/>} requiredRole="ADMIN" />} />
         </Routes>

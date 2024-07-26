@@ -140,9 +140,10 @@ textarea {
 .summary {
   display: flex;
   justify-content: space-between;
+  gap: 0.5em;
 }
 
-.workouts, .recipes {
+.workouts, .recipes, .locations {
   width: 45%;
 }
 
@@ -161,34 +162,38 @@ textarea {
   background-color: #218838;
 }
 
-.recipe-list {
+.recipe-list, .workout-list {
   list-style-type: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
 }
 
-.recipe-item {
+.recipe-item, .workout-item {
   margin-bottom: 10px;
   padding: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f8f9fa;
   transition: background-color 0.3s;
+  margin: 0 auto;
 }
 
-.recipe-item:hover {
+.recipe-item:hover, .workout-item:hover {
   background-color: #e2e6ea;
 }
 
-.recipe-link {
+.recipe-link, .workout-link {
   text-decoration: none;
   color: inherit;
 }
 
-.recipe-link h3 {
+.recipe-link h3, .workout-link h3 {
   margin: 0;
 }
 
-.recipe-link p {
+.recipe-link p, .workout-link p {
   margin: 5px 0 0;
 }
 
@@ -626,11 +631,11 @@ h1 {
 }
 
 button {
-  background-color: #00796b; /* Dark teal button background */
+  background: none;
   color: #ffffff;
-  padding: 10px 15px;
+  /* padding: 10px 15px; */
   border: none;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -759,6 +764,182 @@ button:hover {
 .weather-info span {
   font-size: 14px;
 }
+
+
+/* LocationForm.css */
+
+.location-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 1em;
+}
+
+.location-form label {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.location-form input {
+  padding: 12px; /* Adjust padding to increase space inside the input */
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%; /* Make sure input field spans the full width of the form */
+  box-sizing: border-box; /* Ensures padding and border are included in the width */
+}
+
+.location-form button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px; /* Increased space above the button */
+  align-self: center; /* Center button horizontally */
+}
+
+.location-form button:hover {
+  background-color: #0056b3;
+}
+
+.location-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.location-item {
+
+    margin-bottom: 10px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    transition: background-color 0.3s;
+
+}
+
+.location-item p {
+  margin: 5px 0 0;
+
+}
+
+.location-item h3 {
+  margin: 0;
+}
+
+.location-item:hover {
+  background-color: #e2e6ea;
+}
+
+.home {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #333;
+}
+
+.home h1 {
+  font-size: 2.5em;
+  color: #4CAF50;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.home p {
+  font-size: 1.2em;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.features, .testimonials, .call-to-action {
+  margin-bottom: 40px;
+}
+
+.features h2, .testimonials h2, .call-to-action h2 {
+  font-size: 2em;
+  color: #333;
+  border-bottom: 2px solid #4CAF50;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.features ul {
+  list-style: none;
+  padding: 0;
+}
+
+.features li {
+  font-size: 1.2em;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.testimonials blockquote {
+  font-size: 1.2em;
+  border-left: 5px solid #4CAF50;
+  padding-left: 20px;
+  margin: 20px 0;
+  color: #666;
+}
+
+.testimonials footer {
+  font-size: 1em;
+  color: #999;
+  text-align: right;
+  margin-top: 10px;
+}
+
+.call-to-action {
+  text-align: center;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.call-to-action p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.call-to-action button {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 1.2em;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.call-to-action button:hover {
+  background-color: #45a049;
+}
+
+.workout-list {
+  list-style: none;
+  /* gap: 0.5em; */
+}
+
+.recipe-item {
+  width: 85%;
+}
+
 
 
 
