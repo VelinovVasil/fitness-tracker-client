@@ -7,7 +7,7 @@ This is the REST client of the Fitness Tracker App.
    
 ```npm install```
 
-4. Start the applicationg by running:
+4. Start the application by running:
 
 ```npm start```
 
