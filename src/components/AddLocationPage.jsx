@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import MapComponent from './MapComponent';
 import LocationForm from './LocationForm';
 import authenticationService from '../services/authenticationService';
-import { jwtDecode } from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 import { addLocation } from '../services/locationService';
 
 export default function AddLocationPage() {
@@ -39,7 +39,7 @@ export default function AddLocationPage() {
   return (
     <div>
       <h1>Create Location</h1>
-      <MapComponent setCoordinates={setCoordinates} isInteractive={true} />
+      <MapComponent coordinates={coordinates} setCoordinates={setCoordinates} isInteractive={true} />
       <LocationForm onSubmit={handleFormSubmit} />
     </div>
   );

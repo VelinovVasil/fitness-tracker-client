@@ -3,34 +3,39 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { fetchAllRecipes, deleteRecipeById } from '../services/recipeService'; // Import deleteRecipe
 import { fetchAllWorkouts, deleteWorkoutById } from '../services/workoutService'; // Import deleteWorkout
 import { fetchAllUsers } from '../services/userService';
+import { fetchExercises } from '../services/exerciseService';
 import authenticationService from '../services/authenticationService';
 
 export default function AdminPanel() {
     const [recipes, setRecipes] = useState([]);
     const [workouts, setWorkouts] = useState([]);
     const [users, setUsers] = useState([]);
+    const [exercises, setExercises] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [collapsed, setCollapsed] = useState({
         recipes: true,
         workouts: true,
-        users: true
+        users: true,
+        exercises: true
     });
     const token = authenticationService.getToken();
-    const navigate = useNavigate(); // Initialize useNavigate
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const [recipesData, workoutsData, usersData] = await Promise.all([
+                const [recipesData, workoutsData, usersData, exerciseData] = await Promise.all([
                     fetchAllRecipes(token),
                     fetchAllWorkouts(token),
-                    fetchAllUsers(token)
+                    fetchAllUsers(token),
+                    fetchExercises(token)
                 ]);
 
                 setRecipes(recipesData);
                 setWorkouts(workoutsData);
                 setUsers(usersData);
+                setExercises(exerciseData);
             } catch (error) {
                 console.error('Error fetching data:', error);
                 setError('Failed to fetch data');
@@ -50,13 +55,13 @@ export default function AdminPanel() {
     };
 
     const handleAddExerciseClick = () => {
-        navigate('/add-exercise'); // Redirect to /add-exercise
+        navigate('/add-exercise');
     };
 
     const handleDeleteWorkout = async (id) => {
         try {
-            await deleteWorkoutById(id, token); // Call the delete function
-            setWorkouts(prevWorkouts => prevWorkouts.filter(workout => workout.id !== id)); // Update state
+            await deleteWorkoutById(id, token);
+            setWorkouts(prevWorkouts => prevWorkouts.filter(workout => workout.id !== id));
         } catch (error) {
             console.error('Error deleting workout:', error);
         }
@@ -64,8 +69,8 @@ export default function AdminPanel() {
 
     const handleDeleteRecipe = async (id) => {
         try {
-            await deleteRecipeById(id, token); // Call the delete function
-            setRecipes(prevRecipes => prevRecipes.filter(recipe => recipe.id !== id)); // Update state
+            await deleteRecipeById(id, token);
+            setRecipes(prevRecipes => prevRecipes.filter(recipe => recipe.id !== id)); 
         } catch (error) {
             console.error('Error deleting recipe:', error);
         }
@@ -172,6 +177,32 @@ export default function AdminPanel() {
                             </ul>
                         ) : (
                             <p>No users found</p>
+                        )}
+                    </div>
+                )}
+            </section>
+
+            <section className="collapsible-section">
+                <button className="collapsible-button" onClick={() => toggleSection('exercises')}>
+                    Exercises {collapsed.exercises ? '+' : '-'}
+                </button>
+                {!collapsed.exercises && (
+                    <div className="collapsible-content">
+                        <h2>Exercises</h2>
+                        {exercises.length > 0 ? (
+                            <ul>
+                                {exercises.map(e => (
+                                    <li key={e.id} className="item">
+                                        <div className="detail">
+                                            <p><span>Name:</span> {e.name}</p>
+                                            <p><span>Description:</span> {e.description}</p>
+                                            <p><span>Muscle group:</span> {e.muscleGroup}</p>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p>No exercises found</p>
                         )}
                     </div>
                 )}

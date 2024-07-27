@@ -49,7 +49,7 @@
 //   );
 // }
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -70,8 +70,8 @@ const DefaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
-function LocationMarker({ setCoordinates, isInteractive }) {
-  const [position, setPosition] = React.useState(null);
+function LocationMarker({ coordinates, setCoordinates, isInteractive }) {
+  const [position, setPosition] = useState(coordinates);
 
   useMapEvents({
     click(e) {
@@ -82,19 +82,28 @@ function LocationMarker({ setCoordinates, isInteractive }) {
     },
   });
 
+  useEffect(() => {
+    setPosition(coordinates);
+  }, [coordinates]);
+
   return position === null ? null : <Marker position={position} />;
 }
 
-export default function MapComponent({ setCoordinates, isInteractive = true, center = [51.505, -0.09], zoom = 13 }) {
+export default function MapComponent({ coordinates, setCoordinates, isInteractive = true, center = [42.7, 23.3], zoom = 13 }) {
+  const mapCenter = coordinates ? [coordinates.lat, coordinates.lng] : center;
+
   return (
-    <MapContainer center={center} zoom={zoom} style={{ height: '400px', width: '100%' }}>
+    <MapContainer center={mapCenter} zoom={zoom} style={{ height: '400px', width: '100%' }}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
-      <LocationMarker setCoordinates={setCoordinates} isInteractive={isInteractive} />
+      <LocationMarker coordinates={coordinates} setCoordinates={setCoordinates} isInteractive={isInteractive} />
     </MapContainer>
   );
 }
+
+
+
 
 

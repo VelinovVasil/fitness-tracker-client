@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getLocationById, deleteLocation } from '../services/locationService'; 
+import { getLocationById, deleteLocation } from '../services/locationService';
 import { getWeather } from '../services/weatherService';
 import MapComponent from './MapComponent';
 import authenticationService from '../services/authenticationService';
@@ -13,18 +13,16 @@ export default function LocationDetails() {
     const token = authenticationService.getToken();
     const navigate = useNavigate();
 
-    function handleDeleteLocation() {
-        deleteLocation(id, token).then(() => navigate('/dashboard'))
-    }
+    const handleDeleteLocation = () => {
+        deleteLocation(id, token).then(() => navigate('/dashboard'));
+    };
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Fetch location details
                 const locationData = await getLocationById(id, token);
                 setLocation(locationData);
 
-                // Fetch weather info based on location coordinates
                 const weatherData = await getWeather(`${locationData.latitude},${locationData.longitude}`);
                 setWeather(weatherData);
 
@@ -72,7 +70,7 @@ export default function LocationDetails() {
                 </div>
                 <div className="location-map">
                     <h2>Location Map</h2>
-                    <MapComponent isInteractive={false} />
+                    <MapComponent coordinates={{ lat: latitude, lng: longitude }} isInteractive={false} />
                 </div>
             </div>
         </div>
