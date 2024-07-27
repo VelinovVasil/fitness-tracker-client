@@ -97,7 +97,8 @@ i18n.use(initReactI18next).init({
                 contact_email: "Email",
                 contact_phone: "Phone",
                 contact_address: "Address",
-                admin_link: "Admin panel"
+                admin_link: "Admin panel",
+                no_locations: "No locations"
             },
         },
         bg: {
@@ -191,7 +192,8 @@ i18n.use(initReactI18next).init({
                 contact_email: "Имейл",
                 contact_phone: "Телефон",
                 contact_address: "Адрес",
-                admin_link: "Админ панел"
+                admin_link: "Админ панел",
+                no_locations: "Няма локации"
             },
         }
     }

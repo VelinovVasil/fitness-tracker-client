@@ -16,8 +16,8 @@ body {
 }
 
 .logo {
-  height: 60px; /* Increase the height */
-  width: auto;  /* Maintain aspect ratio */
+  height: 60px; 
+  width: auto;  
 }
 
 nav ul {
@@ -287,13 +287,13 @@ h1 {
 .editRecipeForm input,
 .editRecipeForm select,
 .editRecipeForm textarea {
-  width: calc(100% - 22px); /* To account for padding and borders */
+  width: calc(100% - 22px); 
   padding: 10px;
   margin-top: 5px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-sizing: border-box; /* Ensures padding is included in the width calculation */
+  box-sizing: border-box;
 }
 
 .editRecipeForm textarea {
@@ -315,7 +315,7 @@ h1 {
   background-color: #218838;
 }
 
-/* CSS for the Add Workout form */
+
 .add-workout {
   margin: 1em auto;
   padding: 20px;
@@ -380,7 +380,7 @@ h1 {
   border-radius: 5px;
 }
 
-/* WorkoutDetails.css */
+
 
 .workout-detail {
   max-width: 800px;
@@ -468,7 +468,7 @@ h1 {
   background-color: #e53935;
 }
 
-/* EditWorkout.css */
+
 .edit-workout {
   max-width: 600px;
   margin: 0 auto;
@@ -553,14 +553,14 @@ h1 {
   outline: none;
 }
 
-/* AdminPanel.css */
+
 
 .admin-panel {
   max-width: 800px;
   margin: 0 auto;
   margin-top: 1em;
   padding: 20px;
-  background-color: #e0f7fa; /* Light blue background */
+  background-color: #e0f7fa; 
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -568,7 +568,7 @@ h1 {
 .admin-panel h1 {
   font-size: 2em;
   margin-bottom: 20px;
-  color: #00796b; /* Dark teal color */
+  color: #00796b;
 }
 
 .collapsible-section {
@@ -576,7 +576,7 @@ h1 {
 }
 
 .collapsible-button {
-  background-color: #00796b; /* Dark teal background */
+  background-color: #00796b; 
   color: #ffffff;
   padding: 10px;
   border: none;
@@ -589,12 +589,12 @@ h1 {
 }
 
 .collapsible-button:hover {
-  background-color: #004d40; /* Darker teal hover effect */
+  background-color: #004d40; 
 }
 
 .collapsible-content {
   background-color: #ffffff;
-  border: 1px solid #b2ebf2; /* Light teal border */
+  border: 1px solid #b2ebf2; 
   margin-top: 10px;
   padding: 10px;
   border-radius: 5px;
@@ -607,7 +607,7 @@ h1 {
 
 .admin-panel li {
   background-color: #ffffff;
-  border: 1px solid #b2ebf2; /* Light teal border */
+  border: 1px solid #b2ebf2; 
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
@@ -615,33 +615,31 @@ h1 {
 }
 
 .admin-panel li:hover {
-  background-color: #b2ebf2; /* Light teal hover effect */
+  background-color: #b2ebf2; 
 }
 
 .admin-panel p {
-  color: #004d40; /* Darker teal color for text */
+  color: #004d40; 
 }
 
 .admin-panel .loading {
-  color: #00796b; /* Dark teal color for loading text */
+  color: #00796b;
 }
 
 .admin-panel .error {
-  color: #d32f2f; /* Red color for error text */
+  color: #d32f2f;
 }
 
 button {
   background: none;
   color: #ffffff;
-  /* padding: 10px 15px; */
   border: none;
-  /* border-radius: 5px; */
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #004d40; /* Darker teal button hover effect */
+  background-color: #004d40; 
 }
 
 .admin-panel .detail {
@@ -656,7 +654,7 @@ button:hover {
   font-weight: bold;
 }
 
-/* src/components/AddExercise.css */
+
 
 .form-container {
   max-width: 600px;
@@ -690,16 +688,16 @@ button:hover {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-sizing: border-box; /* Ensure padding and border are included in the width */
+  box-sizing: border-box; 
 }
 
 .form-group textarea {
-  resize: none; /* Allow resizing vertically */
-  min-height: 100px; /* Ensure textarea has a minimum height */
+  resize: none; 
+  min-height: 100px; 
 }
 
 .form-group select {
-  height: 40px; /* Ensure select element has a consistent height */
+  height: 40px; 
 }
 
 .form-group button {
@@ -766,12 +764,11 @@ button:hover {
 }
 
 
-/* LocationForm.css */
 
 .location-form {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center items horizontally */
+  align-items: center; 
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
@@ -792,12 +789,12 @@ button:hover {
 }
 
 .location-form input {
-  padding: 12px; /* Adjust padding to increase space inside the input */
+  padding: 12px; 
   margin-top: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  width: 100%; /* Make sure input field spans the full width of the form */
-  box-sizing: border-box; /* Ensures padding and border are included in the width */
+  width: 100%; 
+  box-sizing: border-box; 
 }
 
 .location-form button {
@@ -808,8 +805,8 @@ button:hover {
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
-  margin-top: 20px; /* Increased space above the button */
-  align-self: center; /* Center button horizontally */
+  margin-top: 20px; 
+  align-self: center; 
 }
 
 .location-form button:hover {
@@ -933,7 +930,6 @@ button:hover {
 
 .workout-list {
   list-style: none;
-  /* gap: 0.5em; */
 }
 
 .recipe-item {
